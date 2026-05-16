@@ -54,7 +54,7 @@ def available_cameras() -> dict:
     return { "cameras": available_cameras }
 
 @mcp.tool()
-def describe_camera_by_name(name: str) -> dict:
+def describe_camera(name: str) -> dict:
     """
     Give the details about a camera by name (not by model). The name must be in the configuration file.
     """
