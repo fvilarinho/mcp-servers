@@ -7,7 +7,7 @@ A lightweight **MCP (Model Context Protocol) server** for managing cameras via H
 ## 🚀 Features
 
 * List available cameras
-* Retrieve camera status (`/stats`)
+* Retrieve camera status
 * Turn cameras on/off
 * Config-based setup (no hardcoding)
 * Secure API via API key
@@ -105,19 +105,6 @@ cd bin
 ```bash
 mcpo --host 0.0.0.0 --port 8000 --api-key <TOKEN> -- python server.py
 ```
-
----
-
-## 🛠️ API (MCP Tools)
-
-| Tool                            | Description  |
-| ------------------------------- | ------------ |
-| `available_cameras()`           | List cameras |
-| `describe_camera_by_name(name)` | GET `/stats` |
-| `turn_on_camera(name)`          | POST `/on`   |
-| `turn_off_camera(name)`         | POST `/off`  |
-
----
 
 # 🐳 Docker
 
