@@ -2,8 +2,6 @@
 
 A lightweight **MCP (Model Context Protocol) server** for managing cameras via HTTP APIs. It uses a configuration-driven approach and exposes a secure API through `mcpo`.
 
----
-
 ## 🚀 Features
 
 | Tool                    | Description                   |
@@ -12,8 +10,6 @@ A lightweight **MCP (Model Context Protocol) server** for managing cameras via H
 | `describe_camera(name)` | Show camera details and stats |
 | `turn_on_camera(name)`  | Turn on the camera            |
 | `turn_off_camera(name)` | Turn off the camerq           |
-
----
 
 ## 🧱 Project Structure
 
@@ -26,7 +22,12 @@ A lightweight **MCP (Model Context Protocol) server** for managing cameras via H
 │   └── start.sh
 ├── etc/
 │   └── config.ini
+├── .env
 ├── Dockerfile
+├── build.sh
+├── publish.sh
+├── start.sh
+├── stop.sh
 ```
 
 ---
@@ -61,16 +62,14 @@ timeout = 5
 | bearer_token | Auth token                                                                                   |
 | timeout      | Request timeout (seconds)                                                                    |
 
----
-
 ## 📦 Installation & Dependencies
 
-Dependencies:
+Python libraries dependencies:
 
 ```
-requests
-mcp
-mcpo
+- requests
+- mcp
+m- cpo
 ```
 
 ### Local Setup
@@ -88,8 +87,6 @@ This script:
 * Creates the virtual environment (`.venv`)
 * Installs all required dependencies
 
----
-
 ## ▶️ Run & How It Works (Local)
 
 Start the server:
@@ -106,28 +103,53 @@ cd bin
 3. Starts the API gateway and MCP server:
 
 ```bash
-mcpo --host 0.0.0.0 --port 8000 --api-key <TOKEN> -- python server.py
+mcpo --host 0.0.0.0 --port <PORT> --api-key <TOKEN> -- python server.py
 ```
 
 # 🐳 Docker
 
+The process to build, publish, start and stop the docker container is defined as followed using the `.env` file
+
+| Key          | Description                                |
+|--------------|--------------------------------------------|
+| REPOSITORY_URL | The URL of the Docker Registry             |
+| REPOSITORY_ID | The Docker Registry Repository ID          |
+| REPOSITORY_PASSWORD | The Docker Registry Repository Password    |
+| BUILD_VERSION | The version number of the Docker Container |
+
 ## Build
 
 ```bash
-docker build -t cameras-automation .
+./build.sh
 ```
+This will run `docker build -t <REPOSITORY_URL>/<REPOSITORY_ID>/mcp-servers/cameras-automation:<BUILD_VERSION> .`
+
+## Publish
+
+```bash
+./publish.sh
+```
+This will run `docker push <REPOSITORY_URL>/<REPOSITORY_ID>/mcp-servers/cameras-automation:<BUILD_VERSION>`
 
 ## Run
 
 ```bash
-docker run -d -p 8000:8000 --name cameras-server cameras-automation
+./start.sh
 ```
+This will run `docker run -d -p "<PORT>:<PORT>" --name cameras-automation <REPOSITORY_URL>/<REPOSITORY_ID>/mcp-servers/cameras-automation:<BUILD_VERSION>`
+
+## Stop
+
+```bash
+./stop.sh
+```
+This will run `docker stop cameras-automation`
 
 ## Override Config
 
 ```bash
 docker run -d \
-  -p 8000:8000 \
+  -p <PORT>:<PORT> \
   -v $(pwd)/etc/config.ini:/home/server/etc/config.ini \
   cameras-automation
 ```
