@@ -6,11 +6,12 @@ A lightweight **MCP (Model Context Protocol) server** for managing cameras via H
 
 ## 🚀 Features
 
-* List available cameras
-* Retrieve camera status
-* Turn cameras on/off
-* Config-based setup (no hardcoding)
-* Secure API via API key
+| Tool                    | Description                   |
+| ----------------------- |-------------------------------|
+| `available_cameras()`   | List available cameras        |
+| `describe_camera(name)` | Show camera details and stats |
+| `turn_on_camera(name)`  | Turn on the camera            |
+| `turn_off_camera(name)` | Turn off the camerq           |
 
 ---
 
@@ -32,6 +33,8 @@ A lightweight **MCP (Model Context Protocol) server** for managing cameras via H
 
 ## ⚙️ Configuration
 
+It is config-based setup (no hardcoding)
+
 Path:
 
 ```
@@ -52,11 +55,11 @@ timeout = 5
 
 ### Fields
 
-| Key          | Description         |
-| ------------ | ------------------- |
-| url          | Camera API base URL |
-| bearer_token | Auth token          |
-| timeout      | Request timeout     |
+| Key          | Description                                                                                  |
+| ------------ |----------------------------------------------------------------------------------------------|
+| url          | Camera API base URL (Check the project https://git.vila.net.br/fvilarinho/automation/cameras |
+| bearer_token | Auth token                                                                                   |
+| timeout      | Request timeout (seconds)                                                                    |
 
 ---
 
@@ -140,10 +143,11 @@ You can integrate this MCP server as a tool inside OpenWebUI when using Ollama.
 Make sure your server is running and accessible:
 
 ```
-http://<HOST>:8000
+http://<OPENWEBUI_HOST>:<OPENWEBUI_PORT>
 ```
 
-> Replace `<HOST>` with your server hostname or IP.
+> Replace `<OPENWEBUI_HOST>` with your server hostname or IP.
+> Replace `<OPENWEBUI_PORT>` with your server port.
 
 ---
 
@@ -164,8 +168,11 @@ Then click **Add**.
 Fill in:
 
 * **Name:** Cameras Automation
-* **URL:** `http://<HOST>:8000`
+* **URL:** `http://<MCPSERVER_HOST>:<MCPSERVER_PORT>`
 * **API Key:** your `server.bearer_token` from `config.ini`
+
+> Replace `<MCPSERVER_HOST>` with your server hostname or IP.
+> Replace `<MCPSERVER_PORT>` with your server port.
 
 ---
 
@@ -190,8 +197,8 @@ The model will automatically invoke the MCP tools.
 
 ## 🔐 Security
 
-* API protected via `bearer_token`
-* Do not commit `config.ini`
+* All the APIs are protected via `bearer_token`
+* Do not commit any secrets or credentials
 * Use volume mounts or secrets in production
 
 ---
