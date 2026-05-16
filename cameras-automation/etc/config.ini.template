@@ -1,0 +1,7 @@
+[server]
+bearer_token = <MCP Server API Key>
+
+[camera]
+bearer_token = <Camera API Key>
+url = <Camera API URL>
+timeout = <Timeout>
