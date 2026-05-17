@@ -1,9 +1,9 @@
 services:
-  mcp-server:
+  mcp-servers-camera:
     build: .
-    image: ${REPOSITORY_URL}/${REPOSITORY_ID}/mcp-server/cameras:${BUILD_VERSION}
-    container_name: mcp-server
-    hostname: mcp-server
+    image: ${REPOSITORY_URL}/${REPOSITORY_ID}/mcp-servers/cameras:${BUILD_VERSION}
+    container_name: mcp-servers-camera
+    hostname: mcp-servers-camera
     restart: always
     ports:
       - "8000:8000"
