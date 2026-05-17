@@ -16,6 +16,7 @@ function install() {
     PIP_CMD=$(which pip)
 
     $PIP_CMD install -r requirements.txt
+    $PIP_CMD install --upgrade pip 
 }
 
 install
