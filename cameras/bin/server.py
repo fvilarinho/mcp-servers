@@ -71,7 +71,10 @@ def describe_camera(name: str) -> dict:
         timeout = timeout
     )
 
-    return json.loads(response.text)
+    data = json.loads(response.text)
+    data["name"] = name
+
+    return data
 
 @mcp.tool()
 def turn_on_camera(name: str = "") -> dict:
