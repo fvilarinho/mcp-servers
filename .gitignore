@@ -1,4 +1,4 @@
-/cameras-automation/bin/.venv/
-/cameras-automation/.env
-/cameras-automation/etc/config.ini
+/cameras/bin/.venv/
+/cameras/.env
+/cameras/etc/config.ini
 /.idea/
