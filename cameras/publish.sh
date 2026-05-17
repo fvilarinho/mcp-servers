@@ -13,7 +13,7 @@ function publish() {
 
     echo $REPOSITORY_PASSWORD | $DOCKER_CMD login -u $REPOSITORY_ID $REPOSITORY_URL --password-stdin
 
-    $DOCKER_CMD push "$REPOSITORY_URL/$REPOSITORY_ID/mcp-servers/cameras:$BUILD_VERSION"
+    $DOCKER_CMD compose push
 }
 
 publish

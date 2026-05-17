@@ -11,8 +11,7 @@ function prepareToStop() {
 function stop() {
     prepareToStop
 
-    $DOCKER_CMD stop "cameras-mcpserver" > /dev/null 2>&1
-    $DOCKER_CMD rm -f "cameras-mcpserver" > /dev/null 2>&1
+    $DOCKER_CMD compose down
 }
 
 stop

@@ -22,7 +22,7 @@ RUN cd ${BIN_DIR} && \
     ./install.sh && \
     ln -s ${BIN_DIR}/start.sh /entrypoint.sh
 
-ADD etc/config.ini ${ETC_DIR}/
+ADD etc/config.ini.template ${ETC_DIR}/config.ini
 ADD bin/server.py ${BIN_DIR}/
 
 WORKDIR ${BIN_DIR}

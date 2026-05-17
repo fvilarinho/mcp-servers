@@ -11,7 +11,7 @@ function prepareToStart() {
 function start() {
     prepareToStart
 
-    $DOCKER_CMD run -d -p "8000:8000" --name "cameras-mcpserver" "$REPOSITORY_URL/$REPOSITORY_ID/mcp-servers/cameras:$BUILD_VERSION"
+    $DOCKER_CMD compose up -d
 }
 
 ./stop.sh

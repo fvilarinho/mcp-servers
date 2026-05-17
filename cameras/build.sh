@@ -11,7 +11,7 @@ function prepareToBuild() {
 function build() {
     prepareToBuild
 
-    $DOCKER_CMD build -t "$REPOSITORY_URL/$REPOSITORY_ID/mcp-servers/cameras:$BUILD_VERSION" .
+    $DOCKER_CMD compose build
 }
 
 build

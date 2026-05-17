@@ -1,0 +1,11 @@
+services:
+  mcpserver:
+    build: .
+    image: ${REPOSITORY_URL}/${REPOSITORY_ID}/cameras-mcpserver:${BUILD_VERSION}
+    container_name: mcpserver
+    hostname: mcpserver
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./etc/config.ini:/home/server/etc/config.ini
